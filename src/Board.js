@@ -5,8 +5,10 @@ function Board() {
     
     const [value, setValue] = useState({board: Array(9).fill(''), xIsNext: true});
     const winner = calculateWinner(value.board);
-    const status = `${winner ? 'Winner:' : 'Next player:'} ${winner ? (winner === 'X' ? 'Player 1' : 'Player 2') : value.xIsNext ? 'Player 1' : 'Player 2'}`
-    
+    const statusLabel = `${winner ? 'Winner: ' : 'Next player: '}`;
+    const statusValue = `${winner ? (winner === 'X' ? 'Player 1' : 'Player 2') : (value.xIsNext ? 'Player 1' : 'Player 2')}`;
+    const draw = value.board.includes('');
+
     function handleClick(i) {
         const squares = value.board.slice();
         console.log(winner);
@@ -36,14 +38,23 @@ function Board() {
         return null;
     }
 
+    function handleRestart() {
+        setValue({board: Array(9).fill(''), xIsNext: true});
+    }
+
     return (
       <div className="Board">
-        <div className="status">{status}</div>
+        <div className={!draw && !winner ? 'status-draw' : 'status'}>{!draw && !winner ? null : statusLabel} 
+            <span className={!draw && !winner ? 'status-draw' : (statusValue === 'Player 1' ? 'status-blue' : 'status-red')}>
+                {(!draw && !winner) ? 'Draw' : statusValue}
+            </span>
+        </div>
         <div className="board-square">
             {value.board.map((s, i) => {
                 return <Square onClick={() => handleClick(i)} value={value.board[i]} key={i} id={i}/>
             })}
         </div>
+        <button onClick={handleRestart} className="reset-btn">Start again</button>
       </div>
     );
   }

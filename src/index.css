@@ -349,7 +349,7 @@
   }
 
   .Game {
-    margin: 15px;
+    /*margin: 15px;*/
     height: 100vh;
     font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 
@@ -388,4 +388,50 @@
 
 .Square:hover {
   transform: scale(1.1);
+}
+
+.Square-blue {
+  color: #4f9cf5;
+  box-shadow: 0px 0px 10px 1px #4f9cf5;
+}
+
+.Square-red {
+  color: #f14747;
+  box-shadow: 0px 0px 10px 1px #f14747;
+}
+
+.status, .status-draw {
+  font-size: 25px;
+}
+
+.status-blue {
+  color: #4f9cf5;
+}
+
+.status-red {
+  color: #f14747;
+}
+
+.status-draw {
+  color: #f1ad47;
+  text-align: center;
+}
+
+.reset-btn {
+  display: block;
+  margin: 0 auto;
+  margin-top: 25px;
+  width: 102%;
+  padding: 15px 5px;
+  background-color: #f1ad47;
+  border-radius: 4px;
+  border: none;
+  color: white;
+  cursor: pointer;
+  transition: all 200ms ease-in-out;
+}
+
+.reset-btn:hover {
+  box-shadow: 0px 0px 11px 3px rgba(0,0,0,0.33);
+  transform: scale(1.01);
 }
