@@ -4,10 +4,15 @@ import Square from "./Square";
 function Board() {
     
     const [value, setValue] = useState({board: Array(9).fill(''), xIsNext: true});
-    const status = `Next player: ${value.xIsNext ? 'Player 1' : 'Player 2'}`
-
+    const winner = calculateWinner(value.board);
+    const status = `${winner ? 'Winner:' : 'Next player:'} ${winner ? (winner === 'X' ? 'Player 1' : 'Player 2') : value.xIsNext ? 'Player 1' : 'Player 2'}`
+    
     function handleClick(i) {
         const squares = value.board.slice();
+        console.log(winner);
+        if(calculateWinner(squares) || squares[i]){
+            return;
+        }
         squares[i] = value.xIsNext ? 'X' : 'O';
         setValue({board: squares, xIsNext: !value.xIsNext});
     }
@@ -22,7 +27,13 @@ function Board() {
             [2, 5, 8],
             [0, 4, 8],
             [2, 4, 6],
-        ]
+        ];
+
+        for(let i = 0; i < lines.length; i++){
+            const [a, b, c] = lines[i];
+            if(squares[a] && squares[a] === squares[b] && squares[a] === squares[c]) return squares[a]
+        }
+        return null;
     }
 
     return (
