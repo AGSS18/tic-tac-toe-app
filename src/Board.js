@@ -55,6 +55,7 @@ function Board() {
             })}
         </div>
         <button onClick={handleRestart} className="reset-btn">Start again</button>
+        <span className="coder">Open-source code by <a href="https://github.com/AGSS18/tic-tac-toe-app" target="_blank">Ana Sala</a></span>
       </div>
     );
   }
